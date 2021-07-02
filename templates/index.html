@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv='cache-control' content='no-cache'>
+        <meta http-equiv='expires' content='0'>
+        <meta http-equiv='pragma' content='no-cache'>
+        <title>DanLight</title>
+        <link type="text/css" rel="stylesheet" href="/static/style.css">
+        <link rel="icon" type="image/ico" href="/static/favicon.ico"/>
+    </head>
+    <body style="background-color:powderblue;">
+
+        <div class="area">
+            <div class="headerLeft">
+                <center><img src="/static/Logo.png")/></center>
+            </div><!-- Header -->
+            <div class="header">
+                <h1><bold>danLight</bold><br>Low voltage light control.</h1>
+            </div>
+            
+            <div class="content"><!-- content -->
+                <br><br><br><br>
+                <div class='row1'>
+                <a href="/Attic-Button-Push/"><img src="/static/attic_off.png" class="centerImage" id='attic_lts')/></a>             
+                </div>
+                <div class='row2'>
+                    <div class ='column'>
+                    <a href="/Bedroom-Button-Push/"><img src="/static/box_off.png" class="centerImage" id='bedroom_lts')/></a>
+                    </div>
+                    <div class ='column'>
+                    <a href="/Rumpus-Button-Push/"><img src="/static/box_off.png" class="centerImage" id='rumpus_lts')/></a>
+                    </div>
+                </div>
+                <div class='row3'>
+                    <div class ='column'>
+                    <a href="/Kitchen-Button-Push/"><img src="/static/box_off.png" class="centerImage" id='kitchen_lts')/></a>
+                    </div>
+                    <div class ='column'>
+                    <a href="/Lounge-Button-Push/"><img src="/static/box_off.png" class="centerImage" id='lounge_lts')/></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+            <h2>House Lighting.</h2>
+                <form action="/Lounge-Button-Push/">
+                    <input type="submit" value="Lounge" class = "button"/>
+                </form>
+                <br>
+                <form action="/Kitchen-Button-Push/">
+                    <input type="submit" value="Kitchen" class = "button"/>
+                </form>
+                <br>
+                <form action="/Rumpus-Button-Push/">
+                    <input type="submit" value="Rumpus" class = "button"/>
+                </form>
+                <br>
+                    <form action="/Bedroom-Button-Push/">
+                    <input type="submit" value="Bedroom" class = "button"/>
+                </form>
+                <br>
+                <form action="/Attic-Button-Push/">
+                    <input type="submit" value="Attic" class = "button"/>
+                </form>
+                <br><h2>Modes.</h2>
+                <form action="/Mode-All-On/">
+                    <input type="submit" value="All On" class = "button"/>
+                </form>
+                <br>
+                <form action="/Mode-All-Off/">
+                    <input type="submit" value="All Off" class = "button"/>
+                </form>
+                <br>
+                <form action="/Mode-Late/">
+                    <input type="submit" value="Late Mode" class = "button"/>
+                </form>
+                <br><h2>Tools.</h2>
+                <form action="/refresh/" onclick="myButton()">
+                    <input type="submit" value="Refresh" class = "button"/>
+                    
+                </form>
+            </div><!-- Sidebar -->           
+            <div class="clear"></div>
+            
+            <div class="footer"><!-- footer -->
+                <center><p style="display:inline;">danLight is a fictional product produced for QUT IFB102 Mini Project<br> by Daniel Lopez Student Number:10956611</p></center>
+            </div>
+            <textarea class="log" id="fileInfo" name="filehere">
+                </textarea>
+        </div>
+        <div class="working">
+
+                <script>                       
+                myReadTextData();
+                
+                function myReadTextData() {                    
+                    document.getElementById("fileInfo").value = {{lounge_state}}{{kitchen_state}}{{bedroom_state}}{{rumpus_state}}{{attic_state}};                    
+                    
+                    /* check to see if lights are on or off and sets the correct image*/
+                    if ({{lounge_state}} == 1 ){
+                            document.getElementById('lounge_lts').src = '/static/box_on.png';
+                        }
+                    else{
+                            document.getElementById('lounge_lts').src = '/static/box_off.png';
+                    }   
+
+                    if ({{kitchen_state}} == 1 ){
+                            document.getElementById('kitchen_lts').src = '/static/box_on.png';
+                        }
+                    else{
+                            document.getElementById('kitchen_lts').src = '/static/box_off.png';
+                    }   
+
+                    if ({{bedroom_state}} == 1 ){
+                            document.getElementById('bedroom_lts').src = '/static/box_on.png';
+                        }
+                    else{
+                            document.getElementById('bedroom_lts').src = '/static/box_off.png';
+                    }   
+
+                    if ({{rumpus_state}} == 1 ){
+                            document.getElementById('rumpus_lts').src = '/static/box_on.png';
+                        }
+                    else{
+                            document.getElementById('rumpus_lts').src = '/static/box_off.png';
+                    }   
+
+                    if ({{attic_state}} == 1 ){
+                            document.getElementById('attic_lts').src = '/static/attic_on.png';
+                        }
+                    else{
+                            document.getElementById('attic_lts').src = '/static/attic_off.png';
+                    }   
+                }
+
+                var tid = setInterval(refresh, 10000);
+                                        
+                function refresh(){         
+                    this.document.location.href = '/refresh/'
+                }
+                </script>
+        
+        </div>
+    </body>
+</html>
